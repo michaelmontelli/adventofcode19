@@ -1,36 +1,36 @@
 #include <stdio.h>
-#include "pointset.h"
+#include "pointmap.h"
 
 int main(void) {
-    PointSet *ps = ps_create();
+    PointMap *pm = pm_create();
     Point p = {1, 2};
-    ps_add(ps, p);
-    printf("Find status of {1, 2}: %d\n", ps_find(ps, p));
-    ps_add(ps, p);
-    printf("Find status of {1, 2}: %d\n", ps_find(ps, p));
-    ps_remove(ps, p);
-    printf("Find status of {1, 2}: %d\n", ps_find(ps, p));
+    pm_put(pm, p);
+    printf("Find status of {1, 2}: %d\n", pm_get(pm, p));
+    pm_put(pm, p);
+    printf("Find status of {1, 2}: %d\n", pm_get(pm, p));
+    pm_remove(pm, p);
+    printf("Find status of {1, 2}: %d\n", pm_get(pm, p));
 
     Point p1 = {1, 1};
     Point p2 = {3, 4};
-    printf("p1: %d\n", ps_find(ps, p1));
-    printf("p2: %d\n", ps_find(ps, p2));
+    printf("p1: %d\n", pm_get(pm, p1));
+    printf("p2: %d\n", pm_get(pm, p2));
 
-    ps_add(ps, p1);
-    ps_add(ps, p2);
-    printf("p1: %d\n", ps_find(ps, p1));
-    printf("p2: %d\n", ps_find(ps, p2));
+    pm_put(pm, p1);
+    pm_put(pm, p2);
+    printf("p1: %d\n", pm_get(pm, p1));
+    printf("p2: %d\n", pm_get(pm, p2));
 
-    ps_remove(ps, p);
-    printf("Find status of {1, 2}: %d\n", ps_find(ps, p));
-    printf("p1: %d\n", ps_find(ps, p1));
-    printf("p2: %d\n", ps_find(ps, p2));
+    pm_remove(pm, p);
+    printf("Find status of {1, 2}: %d\n", pm_get(pm, p));
+    printf("p1: %d\n", pm_get(pm, p1));
+    printf("p2: %d\n", pm_get(pm, p2));
 
-    ps_remove(ps, p1);
-    printf("Find status of {1, 2}: %d\n", ps_find(ps, p));
-    printf("p1: %d\n", ps_find(ps, p1));
-    printf("p2: %d\n", ps_find(ps, p2));
+    pm_remove(pm, p1);
+    printf("Find status of {1, 2}: %d\n", pm_get(pm, p));
+    printf("p1: %d\n", pm_get(pm, p1));
+    printf("p2: %d\n", pm_get(pm, p2));
 
-    ps_free(ps);
+    pm_free(pm);
     return 0;
 }
